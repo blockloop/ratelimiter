@@ -6,8 +6,8 @@ github.com/alicebob/miniredis/server
 # github.com/davecgh/go-spew v1.1.1
 github.com/davecgh/go-spew/spew
 # github.com/gomodule/redigo v2.0.0+incompatible
-github.com/gomodule/redigo/redis
 github.com/gomodule/redigo/internal
+github.com/gomodule/redigo/redis
 # github.com/google/uuid v1.0.0
 github.com/google/uuid
 # github.com/pborman/uuid v0.0.0-20180906182336-adf5a7427709
@@ -19,6 +19,6 @@ github.com/stretchr/testify/assert
 github.com/stretchr/testify/require
 # github.com/yuin/gopher-lua v0.0.0-20190206043414-8bfc7677f583
 github.com/yuin/gopher-lua
-github.com/yuin/gopher-lua/parse
 github.com/yuin/gopher-lua/ast
+github.com/yuin/gopher-lua/parse
 github.com/yuin/gopher-lua/pm
