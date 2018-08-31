@@ -29,13 +29,12 @@ type redisPool interface {
 }
 
 // NewRedisLimiter creates a properly initialized RedisLimiter
-func NewRedisLimiter(pool redisPool, limits []Limit, whitelist ...string) *RedisLimiter {
+func NewRedisLimiter(pool redisPool, limits []Limit) *RedisLimiter {
 	// limits must be sorted by TTL descending so that smaller limits don't
 	// short circuit the longer ones
 	sort.Sort(byDuration(limits))
 
 	return &RedisLimiter{
-		Whitelist:    whitelist,
 		Pool:         pool,
 		Limits:       limits,
 		LimitOnError: true,
@@ -45,26 +44,16 @@ func NewRedisLimiter(pool redisPool, limits []Limit, whitelist ...string) *Redis
 // RedisLimiter is a rate limit which can evaluate an IP address to determine if it
 // should be rate limited using Redis as a backend
 type RedisLimiter struct {
-	Whitelist    []string
 	Pool         redisPool
 	Limits       []Limit
 	LimitOnError bool
 	OnError      func(ip string, err error)
-	OnWhitelist  func(ip string)
 }
 
 // Limit checks an IP address to see if it should be ratelimited. It returns
 // true if the IP address should be ratelimited and false otherwise any errors
 // encountered will return *RedisLimiter.LimitOnError plus the error
 func (l *RedisLimiter) Limit(ip string) bool {
-	for _, wl := range l.Whitelist {
-		if ip == wl {
-			if l.OnWhitelist != nil {
-				l.OnWhitelist(ip)
-			}
-			return false
-		}
-	}
 	con := l.Pool.Get()
 	defer con.Close()
 

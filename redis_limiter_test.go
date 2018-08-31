@@ -49,49 +49,6 @@ func limitTestFunc(r *miniredis.Miniredis, l Limit) func(t *testing.T) {
 	}
 }
 
-func TestLimiterWhitelistNeverLimits(t *testing.T) {
-	srv, err := miniredis.Run()
-	require.NoError(t, err)
-	defer srv.Close()
-
-	l := Limit{
-		Dur:    time.Minute,
-		Global: true,
-		Limit:  1,
-	}
-
-	p := &fakePool{addr: srv.Addr()}
-	ip := uuid.New()
-	limiter := NewRedisLimiter(p, []Limit{l}, ip)
-
-	assert.False(t, limiter.Limit(ip), l.String())
-	assert.False(t, limiter.Limit(ip), l.String())
-}
-
-func TestLimiterWhitelistCallsOnWhitelist(t *testing.T) {
-	srv, err := miniredis.Run()
-	require.NoError(t, err)
-	defer srv.Close()
-
-	l := Limit{
-		Dur:    time.Minute,
-		Global: true,
-		Limit:  1,
-	}
-
-	var result string
-
-	p := &fakePool{addr: srv.Addr()}
-	ip := uuid.New()
-	limiter := NewRedisLimiter(p, []Limit{l}, ip)
-	limiter.OnWhitelist = func(ip string) {
-		result = ip
-	}
-
-	assert.False(t, limiter.Limit(ip), l.String())
-	assert.Equal(t, ip, result)
-}
-
 func TestLimiterCallsOnError(t *testing.T) {
 	srv, err := miniredis.Run()
 	require.NoError(t, err)
