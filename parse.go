@@ -83,7 +83,7 @@ func MustParseLimit(limit string) Limit {
 	return l
 }
 
-// MustParseLimits parses limits and then panics if ther eis an error
+// MustParseLimits parses limits and then panics if there is an error
 func MustParseLimits(limits []string) []Limit {
 	l, err := ParseLimits(limits)
 	if err != nil {

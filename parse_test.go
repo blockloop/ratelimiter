@@ -28,22 +28,22 @@ func TestParseLimitErrors(t *testing.T) {
 
 func TestParseLimit(t *testing.T) {
 	tests := map[string]Limit{
-		"1/1s": Limit{
+		"1/1s": {
 			Dur:    time.Second,
 			Global: false,
 			Limit:  1,
 		},
-		"10/1m": Limit{
+		"10/1m": {
 			Dur:    time.Minute,
 			Global: false,
 			Limit:  10,
 		},
-		"10/24h/g": Limit{
+		"10/24h/g": {
 			Dur:    24 * time.Hour,
 			Global: true,
 			Limit:  10,
 		},
-		"1/1s/g": Limit{
+		"1/1s/g": {
 			Dur:    time.Second,
 			Global: true,
 			Limit:  1,
@@ -62,22 +62,22 @@ func TestParseLimit(t *testing.T) {
 func TestParseLimits(t *testing.T) {
 	raw := []string{"1/1s", "10/1m", "10/24h/g", "1/1s/g"}
 	expected := []Limit{
-		Limit{
+		{
 			Dur:    time.Second,
 			Global: false,
 			Limit:  1,
 		},
-		Limit{
+		{
 			Dur:    time.Minute,
 			Global: false,
 			Limit:  10,
 		},
-		Limit{
+		{
 			Dur:    24 * time.Hour,
 			Global: true,
 			Limit:  10,
 		},
-		Limit{
+		{
 			Dur:    time.Second,
 			Global: true,
 			Limit:  1,
@@ -108,12 +108,12 @@ func TestMustParseLimitPanicsWhenError(t *testing.T) {
 func TestMustParseLimitsParses(t *testing.T) {
 	raw := []string{"1/1s", "10/1m"}
 	expected := []Limit{
-		Limit{
+		{
 			Dur:    time.Second,
 			Global: false,
 			Limit:  1,
 		},
-		Limit{
+		{
 			Dur:    time.Minute,
 			Global: false,
 			Limit:  10,
