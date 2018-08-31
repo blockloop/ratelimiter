@@ -1,10 +1,10 @@
 package ratelimiter
 
 import (
+	"fmt"
 	"sort"
 
 	"github.com/garyburd/redigo/redis"
-	"github.com/pkg/errors"
 )
 
 var limiter = redis.NewScript(1, `
@@ -65,7 +65,7 @@ func (l *RedisLimiter) Limit(ip string) bool {
 
 		limited, err := redis.Bool(limiter.Do(con, key, limit.Limit, limit.Dur.Seconds()))
 		if err != nil {
-			err := errors.Wrap(err, "failed to execute script")
+			err := fmt.Errorf("%s: %s", "failed to execute script", err)
 			if l.OnError != nil {
 				l.OnError(ip, err)
 			}

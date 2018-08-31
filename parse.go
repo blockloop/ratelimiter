@@ -1,12 +1,11 @@
 package ratelimiter
 
 import (
+	"errors"
 	"fmt"
 	"strconv"
 	"strings"
 	"time"
-
-	"github.com/pkg/errors"
 )
 
 var (
@@ -47,7 +46,7 @@ func ParseLimit(limit string) (Limit, error) {
 
 	dur, err := time.ParseDuration(sp[1])
 	if err != nil {
-		return Limit{}, errors.Wrap(err, "invalid duration")
+		return Limit{}, fmt.Errorf("%s: %s", "invalid duration", err)
 	}
 	if dur.Seconds() < 1 {
 		return Limit{}, ErrInvalidDuration
