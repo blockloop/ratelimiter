@@ -35,7 +35,7 @@ limiter := ratelimiter.NewRedisLimiter(redisPool, limit)
 
 ## Limits
 
-Limits are defained as the following struct
+Limits are defined as the following struct
 
 ```go
 type Limit struct {
