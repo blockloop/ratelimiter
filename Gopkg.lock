@@ -10,15 +10,15 @@
   revision = "5a6b3ba71ee69b77cf64febf8b5a7526ca5eaef0"
 
 [[projects]]
-  digest = "1:9bfe4abf7e47f72cb471326dc012abd98dc9b85b1d288c609dd70e7081b74d54"
+  digest = "1:81800e8de4eb59266a26ca5da5eb42e0c32d302dd40ec7003c0aaa12210ab89e"
   name = "github.com/alicebob/miniredis"
   packages = [
     ".",
     "server",
   ]
   pruneopts = "UT"
-  revision = "7aa580c6d4761b53c007d24aa18e730fef3e00d4"
-  version = "v2.4.6"
+  revision = "a86067294dfb54201ec4b7bef5dc13205d4b5bdb"
+  version = "v2.5.0"
 
 [[projects]]
   digest = "1:ffe9824d294da03b391f44e1ae8281281b4afc1bdaa9588c9097785e3af10cec"
