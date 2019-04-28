@@ -6,7 +6,7 @@ import (
 	"time"
 
 	"github.com/alicebob/miniredis"
-	"github.com/garyburd/redigo/redis"
+	"github.com/gomodule/redigo/redis"
 	"github.com/pborman/uuid"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"sort"
 
-	"github.com/garyburd/redigo/redis"
+	"github.com/gomodule/redigo/redis"
 )
 
 var limiter = redis.NewScript(1, `

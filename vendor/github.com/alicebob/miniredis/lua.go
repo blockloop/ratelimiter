@@ -2,7 +2,7 @@ package miniredis
 
 import (
 	redigo "github.com/gomodule/redigo/redis"
-	"github.com/yuin/gopher-lua"
+	lua "github.com/yuin/gopher-lua"
 
 	"github.com/alicebob/miniredis/server"
 )
@@ -92,6 +92,10 @@ func mkLuaFuncs(conn redigo.Conn) map[string]lua.LGFunction {
 			}
 			msg := lua.LVAsString(l.Get(1))
 			l.Push(lua.LString(sha1Hex(msg)))
+			return 1
+		},
+		"replicate_commands": func(l *lua.LState) int {
+			// ignored
 			return 1
 		},
 	}
