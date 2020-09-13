@@ -3,9 +3,9 @@ package ratelimiter
 import (
 	"net/http"
 	"net/http/httptest"
+	"strings"
 	"testing"
 
-	"github.com/pborman/uuid"
 	"github.com/stretchr/testify/require"
 )
 
@@ -19,7 +19,7 @@ func TestMiddlewareCallsNextWhenLimitIsFalse(t *testing.T) {
 
 	w := httptest.NewRecorder()
 	r := httptest.NewRequest("GET", "/", nil)
-	r.RemoteAddr = uuid.New()
+	r.RemoteAddr = "127.0.0.1:22826"
 
 	mw := Middleware(&fakeLimiter{})
 
@@ -28,18 +28,18 @@ func TestMiddlewareCallsNextWhenLimitIsFalse(t *testing.T) {
 	require.EqualValues(t, code, w.Code)
 }
 
-func TestMiddlewarePassesRemoteAddrToLimiter(t *testing.T) {
+func TestMiddlewarePassesOnlyIPFromRemoteAddrToLimiter(t *testing.T) {
 	next := &fakeHandler{}
 
 	w := httptest.NewRecorder()
 	r := httptest.NewRequest("GET", "/", nil)
-	r.RemoteAddr = uuid.New()
+	r.RemoteAddr = "127.0.0.1:22826"
 
 	done := make(chan struct{})
 	limiter := &fakeLimiter{
 		LimitFunc: func(ip string) bool {
 			defer close(done)
-			require.EqualValues(t, r.RemoteAddr, ip)
+			require.EqualValues(t, strings.Split(r.RemoteAddr, ":")[0], ip)
 			return true
 		},
 	}
@@ -57,7 +57,7 @@ func TestMiddlewareSetsStatusCodeToTooManyRequestsWhenLimiterReturnsTrue(t *test
 
 	w := httptest.NewRecorder()
 	r := httptest.NewRequest("GET", "/", nil)
-	r.RemoteAddr = uuid.New()
+	r.RemoteAddr = "127.0.0.1:22826"
 
 	limiter := &fakeLimiter{
 		LimitFunc: func(string) bool {
