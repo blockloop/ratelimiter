@@ -14,7 +14,7 @@ github.com/google/uuid
 github.com/pborman/uuid
 # github.com/pmezard/go-difflib v1.0.0
 github.com/pmezard/go-difflib/difflib
-# github.com/stretchr/testify v1.3.0
+# github.com/stretchr/testify v1.7.2
 github.com/stretchr/testify/assert
 github.com/stretchr/testify/require
 # github.com/yuin/gopher-lua v0.0.0-20190206043414-8bfc7677f583
@@ -22,3 +22,5 @@ github.com/yuin/gopher-lua
 github.com/yuin/gopher-lua/ast
 github.com/yuin/gopher-lua/parse
 github.com/yuin/gopher-lua/pm
+# gopkg.in/yaml.v3 v3.0.1
+gopkg.in/yaml.v3
