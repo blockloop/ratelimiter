@@ -26,11 +26,11 @@ func (l *Limit) String() string {
 	return s
 }
 
-type byDuration []Limit
+type ByDuration []Limit
 
-func (d byDuration) Len() int      { return len(d) }
-func (d byDuration) Swap(i, j int) { d[i], d[j] = d[j], d[i] }
-func (d byDuration) Less(i, j int) bool {
+func (d ByDuration) Len() int      { return len(d) }
+func (d ByDuration) Swap(i, j int) { d[i], d[j] = d[j], d[i] }
+func (d ByDuration) Less(i, j int) bool {
 	a, b := d[i], d[j]
 	if a.Global != b.Global {
 		// place globals at the end so they aren't affected by local limits

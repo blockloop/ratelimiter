@@ -23,7 +23,7 @@ func TestByDurationSortsByDurationDescending(t *testing.T) {
 		{Dur: time.Second},
 	}
 
-	sort.Sort(byDuration(unsorted))
+	sort.Sort(ByDuration(unsorted))
 	assert.Equal(t, sorted, unsorted)
 }
 
@@ -66,6 +66,6 @@ func TestByDurationSortsGlobalBeforeNonGlobal(t *testing.T) {
 		},
 	}
 
-	sort.Sort(byDuration(unsorted))
+	sort.Sort(ByDuration(unsorted))
 	assert.Equal(t, sorted, unsorted)
 }
