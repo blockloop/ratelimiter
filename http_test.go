@@ -9,6 +9,8 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
+const remoteAddr = `127.0.0.1:22826`
+
 func TestMiddlewareCallsNextWhenLimitIsFalse(t *testing.T) {
 	const code = 201
 	next := &fakeHandler{
@@ -19,7 +21,7 @@ func TestMiddlewareCallsNextWhenLimitIsFalse(t *testing.T) {
 
 	w := httptest.NewRecorder()
 	r := httptest.NewRequest("GET", "/", nil)
-	r.RemoteAddr = "127.0.0.1:22826"
+	r.RemoteAddr = remoteAddr
 
 	mw := Middleware(&fakeLimiter{})
 
@@ -33,7 +35,7 @@ func TestMiddlewarePassesOnlyIPFromRemoteAddrToLimiter(t *testing.T) {
 
 	w := httptest.NewRecorder()
 	r := httptest.NewRequest("GET", "/", nil)
-	r.RemoteAddr = "127.0.0.1:22826"
+	r.RemoteAddr = remoteAddr
 
 	done := make(chan struct{})
 	limiter := &fakeLimiter{
@@ -57,7 +59,7 @@ func TestMiddlewareSetsStatusCodeToTooManyRequestsWhenLimiterReturnsTrue(t *test
 
 	w := httptest.NewRecorder()
 	r := httptest.NewRequest("GET", "/", nil)
-	r.RemoteAddr = "127.0.0.1:22826"
+	r.RemoteAddr = remoteAddr
 
 	limiter := &fakeLimiter{
 		LimitFunc: func(string) bool {

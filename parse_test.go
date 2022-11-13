@@ -19,6 +19,7 @@ func TestParseLimitErrors(t *testing.T) {
 	}
 
 	for test, msg := range tests {
+		// nolint:scopelint
 		t.Run(msg, func(t *testing.T) {
 			_, err := ParseLimit(test)
 			assert.Error(t, err)
@@ -51,6 +52,7 @@ func TestParseLimit(t *testing.T) {
 	}
 
 	for raw, limit := range tests {
+		// nolint:scopelint
 		t.Run(raw, func(t *testing.T) {
 			res, err := ParseLimit(raw)
 			assert.NoError(t, err)
@@ -85,6 +87,7 @@ func TestParseLimits(t *testing.T) {
 	}
 
 	for i, l := range raw {
+		// nolint:scopelint
 		t.Run(l, func(t *testing.T) {
 			res, err := ParseLimit(l)
 			assert.NoError(t, err)

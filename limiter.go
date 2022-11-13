@@ -34,7 +34,7 @@ func (d byDuration) Less(i, j int) bool {
 	a, b := d[i], d[j]
 	if a.Global != b.Global {
 		// place globals at the end so they aren't affected by local limits
-		return b.Global == true
+		return b.Global
 	}
 
 	return a.Dur > b.Dur

@@ -1,11 +1,11 @@
 module github.com/blockloop/ratelimiter
 
-go 1.12
+go 1.19
+
+require github.com/stretchr/testify v1.8.1
 
 require (
-	github.com/alicebob/miniredis v0.0.0-20190417180845-3d7aa1333af5
-	github.com/gomodule/redigo v2.0.0+incompatible
-	github.com/google/uuid v1.0.0 // indirect
-	github.com/pborman/uuid v0.0.0-20180906182336-adf5a7427709
-	github.com/stretchr/testify v1.8.1
+	github.com/davecgh/go-spew v1.1.1 // indirect
+	github.com/pmezard/go-difflib v1.0.0 // indirect
+	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
