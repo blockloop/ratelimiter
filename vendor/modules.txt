@@ -10,7 +10,7 @@ github.com/gomodule/redigo/internal
 github.com/gomodule/redigo/redis
 # github.com/google/uuid v1.0.0
 github.com/google/uuid
-# github.com/pborman/uuid v0.0.0-20180906182336-adf5a7427709
+# github.com/pborman/uuid v1.2.1
 github.com/pborman/uuid
 # github.com/pmezard/go-difflib v1.0.0
 github.com/pmezard/go-difflib/difflib
