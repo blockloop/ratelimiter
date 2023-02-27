@@ -7,5 +7,5 @@ require (
 	github.com/gomodule/redigo v2.0.0+incompatible
 	github.com/google/uuid v1.0.0 // indirect
 	github.com/pborman/uuid v0.0.0-20180906182336-adf5a7427709
-	github.com/stretchr/testify v1.8.1
+	github.com/stretchr/testify v1.8.2
 )
